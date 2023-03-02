@@ -10,6 +10,7 @@ import axios from 'axios';
 //LIFECYCLE
 // 1) The mounting (the first rendering)
 // 2) Rerender (useState FORCES A RERENDER WHEN ITS VARIABLE IS CHANGED)
+// 3) Unmount (delete and destroy everything)
 function App() {
   const [ name, setName ] = useState('aron');
   const [ otherName, setOtherName ] = useState('aron');
