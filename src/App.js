@@ -1,57 +1,38 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// SYNC CODE -> 1st solved
 
-// -HTTP ASKING TO BACKEND-
-// http-> protocol ("unsafe")
-// https -> protocol ("safe")
-// /characters -> ENDPOINT
-// /comics ->  ENDPOINT
-// ? -> divisor between url and params
-// apikey=0e10884938787c40366929ce9fde20f4 -> apikey is the param (keyword), = -> assignation sign, 0e10884938787c40366929ce9fde20f4 -> value
-// & -> there's more info to send, act as and AND
-// https://gateway.marvel.com/v1/public/comics?apikey=0e10884938787c40366929ce9fde20f4&limit=18"
-// GET -> Get information - param through the URL, IS PUBLIC
-// POST -> HAS A BODY, SENT FROM FRONTEND TO BACKEND WITH PRIVATE INFORMATION // Can send params in url as well (JSON FORMAT, HTML FORMAT which is not as common, very old) // ADD INFORMATION TO BACKEND (For example a register event in a website)
-// PUT -> HAS A BODY, SENT FROM FRONTEND TO BACKEND WITH PRIVATE INFORMATION // Can send params in url as well (JSON FORMAT, HTML FORMAT which is not as common, very old) // MODIFY INFO IN BACKEND
-// PATCH -> Same as PUT, not usually used
-// DELETE -> HAS A BODY, SENT FROM FRONTEND TO BACKEND WITH PRIVATE INFORMATION // Can send params in url as well (JSON FORMAT, HTML FORMAT which is not as common, very old) // DELETE INFO IN BACKEND
+// ASYNC CODE --> DIVIDED IN 2 -> 1) JAVASCRIPT ASYNC CODE (setTimeout, setInterval) -> 2d solved
+//                                2) CALLS TO THE BACKEND: FETCH, AXIOS, XMLHTTPREQUEST -> last solved
 
-//ASYNCHRONOUS
-// console.log(1)
-// setTimeout(() => console.log(2), 200)
-// setTimeout(() => console.log(3))
-// console.log(4)
-
-// -> terminal printing:
-// 1
-// 4
-// 3
-// 2
-
-// first synchronous, then asynchronous api web stack wiht no timing frame, and finally asynchronous in the event queue stack with time frame
-
+//LIFECYCLE
+// 1) The mounting (the first rendering)
+// 2) Rerender (useState FORCES A RERENDER WHEN ITS VARIABLE IS CHANGED)
 function App() {
+  const [ name, setName ] = useState('aron');
+  const [ otherName, setOtherName ] = useState('aron');
+  const [ characters, setCharacters] = useState(null);
+  const [ comics, setComics ] = useState(undefined);
 
-  const response = axios.get("https://gateway.marvel.com/v1/public/characters?apikey=0&limit=18").then((response) => {
-    console.log('ASYNC RESPONSE', response)
-  }).catch((error) => {
-    console.log(error)
-  })
 
-  console.log('SYNC RESPONSE', response);
+  const clickButton = () => {
+    setTimeout(() => setName('Button Clicked from clickButton'), 2000);
+  }
   // Terminal prints Promise<pending> -> resolved or rejected
+  
+  console.log(clickButton);
   return (
     <div className="App">
       <header>
         <nav>
-          <a>Characters</a>
-          <a>Comics</a>
+          <p>{name}</p>
+          <button onClick={() => setName('Lujan')}>Change Name to Lujan</button>
+          <button onClick={clickButton}>Change To other sentence</button>
         </nav>
       </header>
       <main>
-
       </main>
     </div>
   );
