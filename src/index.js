@@ -7,9 +7,7 @@ import App from './App';
 const divRoot = document.getElementById('root');
 const aron = ReactDOM.createRoot(divRoot);
 aron.render(
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
