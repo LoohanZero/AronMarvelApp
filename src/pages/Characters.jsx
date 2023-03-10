@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 // fetch -> javascript async function
@@ -31,20 +31,6 @@ import axios from 'axios'
 //    console.log(error)
 // })
 
-const fetchMarvelCharactersWithTryCatch = async () => {
-  try {
-    const response = await fetch('https://gateway.marvel.com/v1/public/characters?apikey=0e10884938787c40366929ce9fde20f4&limit=18');
-    const data = await response.json();
-    console.log('TRYCATCH', data);
-  }
-  catch (error) {
-
-  }
-  finally {
-    // EXECUTED EITHER IF THE PROMISE IS RESOLVED OR REJECTED
-  }
-}
-
 const fetchMarvelCharactersWithThen = () => {
   fetch('https://gateway.marvel.com/v1/public/characters?apikey=0e10884938787c40366929ce9fde20f4&limit=18')
   .then((response) => {
@@ -64,14 +50,51 @@ const fetchMarvelCharactersWithThen = () => {
      // EXECUTED EITHER IF THE PROMISE IS RESOLVED OR REJECTED
   });
 }
+const otherFunction = () => {
+  console.log('OTHER FUNCTION')
+}
+
+const fetchMarvelCharactersWithTryCatch = async (setCharacters) => {
+  try {
+    // const response = await fetch('https://gateway.marvel.com/v1/public/characters?apikey=0e10884938787c40366929ce9fde20f4&limit=18');
+    const response = await axios.get('https://gateway.marvel.com/v1/public/characters?apikey=0e10884938787c40366929ce9fde20f4&limit=18');
+    // const data = await response.json();
+    // RESPONSE IS FROM AXIOS, FIRST DATA IS A KEY WORD FROM AXIOS AND SECOND DATA IS A KEY WORD FROM MARVEL
+    // console.log('TRYCATCH response', response);
+    // console.log('TRYCATCH response.data', response.data);
+    // console.log('TRYCATCH response.data.data', response.data.data);
+    console.log('TRYCATCH response.data.data.results', response.data.data.results)
+    setCharacters(response.data.data.results); // SETS CHARACTERS VARIABLE AND FORCES A RERENDER
+  }
+  catch (error) {
+
+  }
+  finally {
+    // EXECUTED EITHER IF THE PROMISE IS RESOLVED OR REJECTED
+  }
+}
 
 const Characters = () => {
- 
-  fetchMarvelCharactersWithThen();
-  fetchMarvelCharactersWithTryCatch();
+  const [ characters, setCharacters] = useState(null);
+
+  // fetchMarvelCharactersWithThen();
+
+  useEffect(() => {
+    fetchMarvelCharactersWithTryCatch(setCharacters);
+    // DEPENDENCIES ARRAY IS EMTPY SO USEEFFECT IS ONLY TRIGGERED ON MOUNT
+    // WHEN REACT RERENDERS THE PAGE, USEEFFECT IS GOING TO BE IGNORED
+  }, []);
+
+  console.log(characters);
 
   return (
-    <div>Characters</div>
+    <div>
+      <button onClick={() => console.log('OTHER FUNCTION')}>Anonymous function</button>
+      <button onClick={otherFunction}>otherFunction</button>
+
+      <p>Characters</p>
+    </div>
+
   )
 }
 
