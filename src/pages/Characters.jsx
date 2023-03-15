@@ -76,6 +76,10 @@ const fetchMarvelCharactersWithTryCatch = async (setCharacters) => {
 
 const Characters = () => {
   const [ characters, setCharacters] = useState(null);
+  const [ cart, setCart] = useState(null);
+  const [ firstNumber, setFirstNumber ] = useState(0)
+  const [ secondNumber, setSecondNumber ] = useState(0)
+  const [ operator, setOperator ] = useState(0)
 
   // fetchMarvelCharactersWithThen();
 
@@ -84,15 +88,27 @@ const Characters = () => {
     // DEPENDENCIES ARRAY IS EMTPY SO USEEFFECT IS ONLY TRIGGERED ON MOUNT
     // WHEN REACT RERENDERS THE PAGE, USEEFFECT IS GOING TO BE IGNORED
   }, []);
-
-  console.log(characters);
-
+    // characters.length > 10 ? 'bigger' : 'smaller' -> JSX
+    // if(characters.length > 10) {
+    // return 'bigger'
+    //  } else {
+    //   return 'smaller'
+    //  } -> NOT JSX
   return (
     <div>
-      <button onClick={() => console.log('OTHER FUNCTION')}>Anonymous function</button>
-      <button onClick={otherFunction}>otherFunction</button>
+      <button onClick={() => {
 
+       }}>Anonymous function</button>
+      <button onClick={(otherFunction)}>otherFunction</button>
+      { characters?.length > 10 ? 'bigger' : 'smaller' }
+      { characters?.length > 10 && 'bigger'}
+      { characters?.length < 10 && 'smaller' }
       <p>Characters</p>
+      { cart?.length > 0 ? 
+      cart.map(() => <article>cart.id</article>) 
+      :
+      <p>No articles added to the cart</p> }
+      
     </div>
 
   )
