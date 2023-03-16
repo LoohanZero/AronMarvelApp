@@ -31,6 +31,13 @@ import axios from 'axios'
 //    console.log(error)
 // })
 
+
+// (number > 0 && number < 100) || number < 0
+// number > 0 || number < 0 --> number !== 0 -> different than 0
+// number > 0 && number < 0 --> NOT POSSIBLE (always false)
+// !(number > 0 && number < 0) --> Always true
+// 1/3 
+
 const fetchMarvelCharactersWithThen = () => {
   fetch('https://gateway.marvel.com/v1/public/characters?apikey=0e10884938787c40366929ce9fde20f4&limit=18')
   .then((response) => {
@@ -107,7 +114,7 @@ const Characters = () => {
       { cart?.length > 0 ? 
       cart.map(() => <article>cart.id</article>) 
       :
-      <p>No articles added to the cart</p> }
+      <p>Your cart is empty</p> }
       
     </div>
 
