@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+// {} === {} -> false
 
 // for (let index = 0; index < array.length; index++) {
 //   const element = array[index];
@@ -34,7 +35,7 @@ const Comics = () => {
 
   useEffect(() => {
     fetchMarvelCharactersWithTryCatch(setComics, page);
-  }, [ page ])
+  }, [ page ]) // -> dependencies array listens for changes in the page variable. If this variable doesnt change, the backend is called only on mount
 
   const mappedComics = comics && comics.map((object) => object.title)
   // console.log(mappedComics)
