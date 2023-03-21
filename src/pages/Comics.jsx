@@ -13,7 +13,7 @@ import axios from 'axios'
 // JSX CANNOT PRINT OBJECTS
 const fetchMarvelCharactersWithTryCatch = async (setComics, page) => {
   try {
-    // const response = await fetch('https://gateway.marvel.com/v1/public/comics?apikey=0e10884938787c40366929ce9fde20f4&limit=18');
+    // const response = await fetch('https://gateway.marvel.com/v1/public/characters?apikey=0e10884938787c40366929ce9fde20f4&limit=18');
     const response = await axios.get(`https://gateway.marvel.com/v1/public/comics?apikey=0e10884938787c40366929ce9fde20f4&limit=18&offset=${18 * (page - 1)}`);
     // const data = await response.json();
     // RESPONSE IS FROM AXIOS, FIRST DATA IS A KEY WORD FROM AXIOS AND SECOND DATA IS A KEY WORD FROM MARVEL
