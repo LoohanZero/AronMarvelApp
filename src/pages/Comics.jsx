@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 // {} === {} -> false
 
@@ -32,7 +33,7 @@ const fetchMarvelCharactersWithTryCatch = async (setComics, page) => {
 const Comics = () => {
   const [ comics, setComics] = useState(null);
   const [ page, setPage] = useState(1);
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetchMarvelCharactersWithTryCatch(setComics, page);
   }, [ page ]) // -> dependencies array listens for changes in the page variable. If this variable doesnt change, the backend is called only on mount
@@ -44,7 +45,10 @@ const Comics = () => {
       <span>{page}</span><button onClick={() => setPage(page + 1)}>Ask for page: {page + 1}</button>
       {comics && comics.map((comic, index) => 
       <div key={comic.id}>
-        <h2> {index + 1} - {comic.title}</h2>
+        <a 
+        style={{color: 'blue', cursor: 'pointer'}}
+        onClick={() => navigate(`/comic/${comic.id}`)}
+        ><h2> {index + 1} - {comic.title}</h2></a>
         <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}/>
       </div>
       )}
