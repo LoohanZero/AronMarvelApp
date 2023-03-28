@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
+// if starts with use it's a hook. 
+// MANDATORY - HOOKS
+// 1st Rule: they have used inside a functional component 
+// 2nd Rule: Hooks can only be called at the top level of a component. (not inside a function)
+// 3rd Rule: Hooks cannot be conditional.
+
 // {} === {} -> false
 
 // for (let index = 0; index < array.length; index++) {
@@ -34,6 +40,7 @@ const Comics = () => {
   const [ comics, setComics] = useState(null);
   const [ page, setPage] = useState(1);
   const navigate = useNavigate();
+
   useEffect(() => {
     fetchMarvelCharactersWithTryCatch(setComics, page);
   }, [ page ]) // -> dependencies array listens for changes in the page variable. If this variable doesnt change, the backend is called only on mount

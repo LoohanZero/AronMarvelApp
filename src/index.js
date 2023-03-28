@@ -7,11 +7,12 @@ import { BrowserRouter } from 'react-router-dom';
 //import reportWebVitals from './reportWebVitals';
 
 const divRoot = document.getElementById('root');
-const aron = ReactDOM.createRoot(divRoot);
+const root = ReactDOM.createRoot(divRoot);
 
-      
+// Browser Router is a context that surrounds app and has all the methods to do the routing, 
+// all the variables to help you with it and it also has a history of the information regarding the routing      
 
-aron.render(
+root.render(
     <BrowserRouter>
         <App />
     </BrowserRouter>

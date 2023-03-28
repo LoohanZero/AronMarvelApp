@@ -14,21 +14,14 @@ function App() {
   
   return (
     <div className="App">
-      {/* <Comics/> */}
-      {/* <Characters/> */}
-      {/* <ControlledForm/>  */}
-      {/* <UncontrolledForm/> */}
-      {/* <Practice/>
-      <Counter/> */}
-    <Routes>
-      <Route path="/" element={<ControlledForm/>} />
-      <Route path="/comics" element={<Comics/>} />
-      <Route path="/comic/:id" element={<Comic/>} />
-      <Route path="/characters" element={<Characters/>} />
-      <Route path="/practice" element={<Practice/>} />
-      <Route path="/counter" element={<Counter/>} />
-    </Routes>
-
+      <Routes>
+        <Route path="/" element={<ControlledForm/>} />
+        <Route path="/comics" element={<Comics/>} />
+        <Route path="/comic/:id" element={<Comic/>} />
+        <Route path="/characters" element={<Characters/>} />
+        <Route path="/practice" element={<Practice/>} />
+        <Route path="/counter" element={<Counter/>} />
+      </Routes>
     </div>
   );
 }
